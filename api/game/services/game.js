@@ -4,7 +4,8 @@
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-services)
  * to customize this service
  */
-const axios = require('axios');
+const axios = require("axios");
+const slugify = require("slugify");
 
 async function getGameInfo(slug) {
   const jsdom = require("jsdom");
@@ -18,6 +19,22 @@ async function getGameInfo(slug) {
     rating: 'BR0',
     short_description: description.textContent.slice(0, 160),
     description: description.innerHTML
+  }
+}
+
+async function getByName(name, entityName) {
+  const item = await strapi.services[entityName].find({ name })
+  return item.length ? item[0] : null;
+}
+
+async function create(name, entityName) {
+  const item = await getByName(name, entityName);
+
+  if(!item) {
+    return await strapi.services[entityName].create({
+      name,
+      slug: slugify(name, { lower: true }),
+    })
   }
 }
 
