@@ -13,6 +13,18 @@ export default {
         type: 'select',
         options: ['white', 'black']
       }
+    },
+    size: {
+      control: {
+        type: 'select',
+        options: ['small', 'medium']
+      }
+    },
+    lineColor: {
+      control: {
+        type: 'select',
+        options: ['primary', 'secondary']
+      }
     }
   }
 } as Meta
