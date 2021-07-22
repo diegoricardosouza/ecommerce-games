@@ -1,10 +1,20 @@
-import FormProfile from 'components/FormProfile'
+import CardsList, { CardsListProps } from 'components/CardsList'
 import Profile from 'templates/Profile'
 
-export default function Orders() {
+import mockCards from 'components/PaymentOptions/mock'
+
+export default function ProfileCards({ cards }: CardsListProps) {
   return (
     <Profile>
-      <FormProfile />
+      <CardsList cards={cards} />
     </Profile>
   )
+}
+
+export function getServerSideProps() {
+  return {
+    props: {
+      cards: mockCards
+    }
+  }
 }
