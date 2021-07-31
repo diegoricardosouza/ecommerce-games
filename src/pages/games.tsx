@@ -6,7 +6,7 @@ export default function GamesPage(props: GamesTemplateProps) {
   return <GamesTemplate {...props} />
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   return {
     props: {
       games: gamesMock,
