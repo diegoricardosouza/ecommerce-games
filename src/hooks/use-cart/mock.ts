@@ -1,4 +1,5 @@
 import { QUERY_GAMES } from 'graphql/queries/games'
+import formatPrice from 'utils/format-price'
 
 export const gamesMock = {
   request: {
@@ -45,13 +46,13 @@ export const cartItems = [
   {
     id: '1',
     img: 'http://localhost:1337/sample-game.jpg',
-    price: 'R$ 10,50',
+    price: formatPrice(10.5),
     title: 'Sample Game'
   },
   {
     id: '2',
     img: 'http://localhost:1337/sample-game.jpg',
-    price: 'R$ 10,50',
+    price: formatPrice(10.5),
     title: 'Sample Game'
   }
 ]

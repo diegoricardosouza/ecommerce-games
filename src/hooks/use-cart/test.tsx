@@ -1,9 +1,10 @@
 import { MockedProvider } from '@apollo/client/testing'
 import { renderHook } from '@testing-library/react-hooks'
+import formatPrice from 'utils/format-price'
 import { setStorageItem } from 'utils/localStorage'
 
 import { useCart, CartProvider, CartProviderProps } from '.'
-import { gamesMock } from './mock'
+import { cartItems, gamesMock } from './mock'
 
 describe('useCart', () => {
   it('should return items and its info if there are any in the cart', async () => {
@@ -15,16 +16,16 @@ describe('useCart', () => {
 
     setStorageItem('cartItems', ['1', '2'])
 
-    // const { result, waitForNextUpdate } = renderHook(() => useCart(), {
-    //   wrapper
-    // })
-
-    const { waitForNextUpdate } = renderHook(() => useCart(), {
+    const { result, waitForNextUpdate } = renderHook(() => useCart(), {
       wrapper
     })
 
     await waitForNextUpdate()
 
-    //expect(result.current.items).toStrictEqual(cartItems)
+    expect(result.current.items).toStrictEqual(cartItems)
+    expect(result.current.quantity).toBe(2)
+
+    const total = formatPrice(21)
+    expect(result.current.total).toBe(total)
   })
 })
