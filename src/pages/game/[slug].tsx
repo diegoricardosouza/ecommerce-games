@@ -12,7 +12,7 @@ import {
 import { GetStaticProps } from 'next'
 import { QueryRecommended } from 'graphql/generated/QueryRecommended'
 import { QUERY_RECOMMENDED } from 'graphql/queries/recommended'
-import { gamesMapper, highlightMapper } from 'utils/mappers/mappers'
+import { gamesMapper, highlightMapper } from 'utils/mappers'
 import { QUERY_UPCOMING } from 'graphql/queries/upcoming'
 import {
   QueryUpcoming,
