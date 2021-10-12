@@ -35,13 +35,6 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
   const [wishlistItems, setWishlistItems] = useState<
     QueryWishlist_wishlists_games[]
   >([])
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isInWishlist = (id: string) => false
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const addToWishlist = (id: string) => {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const removeFromWishlist = (id: string) => {}
 
   const { data, loading } = useQueryWishlist({
     skip: !session?.user?.email,
@@ -54,6 +47,14 @@ const WishlistProvider = ({ children }: WishlistProviderProps) => {
   useEffect(() => {
     setWishlistItems(data?.wishlists[0]?.games || [])
   }, [data])
+
+  const isInWishlist = (id: string) =>
+    !!wishlistItems.find((game) => game.id === id)
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const addToWishlist = (id: string) => {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  const removeFromWishlist = (id: string) => {}
 
   return (
     <WishlistContext.Provider
