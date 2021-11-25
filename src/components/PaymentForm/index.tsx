@@ -1,16 +1,26 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CardElement } from '@stripe/react-stripe-js'
 import { StripeCardElementChangeEvent } from '@stripe/stripe-js'
 import { ErrorOutline, ShoppingCart } from '@styled-icons/material-outlined'
 
+import { useCart } from 'hooks/use-cart'
 import Button from 'components/Button'
 import Heading from 'components/Heading'
 
 import * as S from './styles'
 
 const PaymentForm = () => {
+  const { items } = useCart()
   const [error, setError] = useState<string | null>(null)
   const [disabled, setDisabled] = useState(true)
+  // const [clientSecret, setClientSecret] = useState('')
+  // const [freeGames, setFreeGames] = useState(false)
+
+  useEffect(() => {
+    if (items.length) {
+      //teste
+    }
+  }, [items])
 
   const handleChange = async (event: StripeCardElementChangeEvent) => {
     setDisabled(event.empty)
