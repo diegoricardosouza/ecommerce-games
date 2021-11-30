@@ -110,7 +110,5 @@ module.exports = {
 
     // retornando que foi salvo no banco
     return sanitizeEntity(entity, { model: strapi.models.order });
-
-    //return { cart, paymentIntentId, paymentMethod, userInfo };
   }
 };
