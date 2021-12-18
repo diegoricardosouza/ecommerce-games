@@ -5,5 +5,9 @@ describe('Home Page', () => {
     // visitar a página
     cy.visit('/')
 
+    cy.get('.slick-slider').within(() => {
+      cy.findByRole('heading', { name: /grim dawn/i })
+      cy.findByRole('link', { name: /buy now/i })
+    })
   });
 });
