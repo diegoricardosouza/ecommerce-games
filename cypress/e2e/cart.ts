@@ -5,20 +5,10 @@ describe('Cart', () => {
     // vistar a home
     cy.visit('/')
 
-    // procurar um jogo e clicar no botão de carrinho
-    cy.getByDataCy('game-card').eq(0).within(() => {
-      cy.findByRole('button', { name: /add to cart/i }).click()
-    })
-
-    // procurar um jogo e clicar no botão de carrinho
-    cy.getByDataCy('game-card').eq(1).within(() => {
-      cy.findByRole('button', { name: /add to cart/i }).click()
-    })
-
-    // procurar um jogo e clicar no botão de carrinho
-    cy.getByDataCy('game-card').eq(2).within(() => {
-      cy.findByRole('button', { name: /add to cart/i }).click()
-    })
+    // procurar por um jogo e clicar no botão de carrinho
+    cy.addToCartByIndex(0)
+    cy.addToCartByIndex(1)
+    cy.addToCartByIndex(2)
 
     // verificar se o ícone do carinho tem 3 items
     cy.findAllByLabelText(/cart items/i)
@@ -36,20 +26,10 @@ describe('Cart', () => {
       .first()
       .click()
 
-    // procura pelo jogo adicionado e remove
-    cy.getByDataCy('game-card').eq(0).within(() => {
-      cy.findByRole('button', { name: /remove from cart/i }).click()
-    })
-
-    // procura pelo jogo adicionado e remove
-    cy.getByDataCy('game-card').eq(1).within(() => {
-      cy.findByRole('button', { name: /remove from cart/i }).click()
-    })
-
-    // procura pelo jogo adicionado e remove
-    cy.getByDataCy('game-card').eq(2).within(() => {
-      cy.findByRole('button', { name: /remove from cart/i }).click()
-    })
+    // procurar por um jogo e clicar no botão de carrinho
+    cy.removeFromCartByIndex(0)
+    cy.removeFromCartByIndex(1)
+    cy.removeFromCartByIndex(2)
 
     // verifica se o icone do carrinho nao tem nada
     cy.findAllByLabelText(/cart items/i).should('not.exist')
